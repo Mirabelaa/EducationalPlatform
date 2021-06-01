@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="53fe212d1ddf458fbb7648503b20be4d" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ScoalaModel.Absenta" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Admin" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Clasa" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Elev" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Inregistrare" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Materiale_didactice" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Materie" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Medie" Width="1.5" PointX="10.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Nota" Width="1.5" PointX="12.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Prof_materie" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.prof_materie_clasa" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Profesor" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Specializare" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoalaModel.Specializare_materie" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="ScoalaModel.FK_Absenta_Elev" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Absenta_Prof_materie" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Admin_Inregistrare1" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Clasa_Specializare" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Elev_Clasa" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_prof_materie_clasa_Clasa" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Elev_Inregistrare" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Medie_Elev" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Nota_Elev" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_prof_materie_clasa_Materiale_didactice" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Prof_materie_Materie" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Specializare_materie_Materie" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Medie_Prof_materie" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Nota_Prof_materie1" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_prof_materie_clasa_Prof_materie" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Prof_materie_Profesor" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.FK_Specializare_materie_Specializare" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoalaModel.Diriginte" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

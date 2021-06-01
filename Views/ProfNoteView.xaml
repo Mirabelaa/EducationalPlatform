@@ -1,0 +1,109 @@
+﻿<Window x:Class="tema3.Views.ProfNoteView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tema3.Views"
+        xmlns:localConverter="clr-namespace:tema3.Converters"
+        xmlns:local1="clr-namespace:tema3.ViewModels"
+        mc:Ignorable="d"
+        Title="ProfNoteView" Height="450" Width="800"
+         WindowStyle="SingleBorderWindow"
+         ResizeMode="CanResize">
+    <Window.DataContext>
+        <local1:ProfVM />
+    </Window.DataContext>
+    <Grid>
+
+        <Image  Stretch="UniformToFill" 
+                Source="D:\facultate\an2\sem2\mvp\tema3\tema3\resources\b2.jpg"/>
+
+        <StackPanel>
+            <StackPanel.Resources>
+                <localConverter:NotaConvert x:Key="notaConvert" />
+            </StackPanel.Resources>
+            <WrapPanel>
+                <Button Content="Adauga" Margin="15" Width="100" Height="30" Command="{Binding AddNotaCommand}"
+                        >
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource notaConvert}">
+                            <Binding ElementName="nume" Path="Text"/>
+                            <Binding ElementName="prenume" Path="Text"/>
+                            <Binding ElementName="materie" Path="Text"/>
+                            <Binding ElementName="data" Path="Text"/>
+                            <Binding ElementName="teza" Path="Text"/>
+                            <Binding ElementName="nota" Path="Text"/>
+                            <Binding ElementName="semestru" Path="Text"/>
+
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                    
+                </Button>
+                <Button Content="Anuleaza" Margin="15" Width="100" Height="30" Command="{Binding AnuleazaNotaCommand}" 
+                    CommandParameter="{Binding SelectedItem, ElementName=noteGrid}" />
+            </WrapPanel>
+            <Label  HorizontalAlignment="Left" Margin="100,120,0,0" 
+               VerticalAlignment="Top" Width="685" Height="42"
+               Content="{Binding Message}" Foreground="Red"/>
+        </StackPanel>
+       
+        <Grid>
+            <Grid.DataContext>
+                <local1:ProfVM />
+
+            </Grid.DataContext>
+
+            <DataGrid Name="noteGrid"  Margin="27,216,180.6,14" AutoGenerateColumns="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Note}"
+                      Visibility="Visible">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" />
+                    <DataGridTextColumn Header="Prenume" Binding="{Binding Prenume}" />
+                    <DataGridTextColumn Header="Materie" Binding="{Binding Materie}" />
+                    <DataGridTextColumn Header="Nota" Binding="{Binding Nota}" />
+                    <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                    <DataGridTextColumn Header="Semestru" Binding="{Binding Semestru}" />
+                    <DataGridTextColumn Header="Teza" Binding="{Binding Teza}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Label Content="Nume" HorizontalAlignment="Left" Margin="25,71,0,0" 
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <Label Content="Prenume" HorizontalAlignment="Left" Margin="25,133,0,0" 
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox Name="nume" Text ="{Binding ElementName=noteGrid, Path=SelectedItem.Nume, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="128,71,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="prenume" Text ="{Binding ElementName=noteGrid, Path=SelectedItem.Prenume, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="128,133,0,0" 
+                 TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Materie" HorizontalAlignment="Left" Margin="300,71,0,0" 
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <Label Content="Data" HorizontalAlignment="Left" Margin="300,133,0,0"
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox Name="materie" Text ="{Binding ElementName=noteGrid, Path=SelectedItem.Materie, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="398,71,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="data" Text ="{Binding ElementName=noteGrid, Path=SelectedItem.Data, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="398,133,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="semestru" Text ="{Binding ElementName=noteGrid, Path=SelectedItem.Semestru, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="655,134,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Semestru" HorizontalAlignment="Left" Margin="556,136,0,0"
+            VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <Label Content="Nota" HorizontalAlignment="Left" Margin="556,71,0,0"
+            VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox x:Name="nota" Text ="{Binding SelectedItem.Nota, ElementName=noteGrid, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="655,71,0,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Teza" HorizontalAlignment="Left" Margin="558,16,0,0"
+            VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox x:Name="teza" Text ="{Binding SelectedItem.Teza, ElementName=noteGrid, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="655,16,0,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,93 @@
+﻿<Window x:Class="tema3.Views.ProfView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tema3.ViewModels"
+        mc:Ignorable="d"
+        Title="ProfView" Height="450" Width="800"
+        WindowStyle="SingleBorderWindow"
+         ResizeMode="CanResize">
+    <Grid>
+
+        <Image  Stretch="UniformToFill" 
+                Source="D:\facultate\an2\sem2\mvp\tema3\tema3\resources\b2.jpg"/>
+        <Grid>
+            <Grid.DataContext>
+                <local:ProfVM />
+            </Grid.DataContext>
+
+            <Label Content="{Binding Nume}" HorizontalAlignment="Left"
+               Margin="43,34,0,0" VerticalAlignment="Top"
+               Width="94" Height="35" Background="Beige"/>
+            <Label Content="{Binding Prenume}" HorizontalAlignment="Left" 
+               Margin="43,71,0,0" VerticalAlignment="Top"
+                Width="94" Height="35" Background="Beige"/>
+            <Button Name="absente"
+                Content="Vezi absente" HorizontalAlignment="Left" Margin="75,161,0,0" 
+                    VerticalAlignment="Top" Width="104" Height="31" Click="absente_Click"/>
+            <Button Name="note"
+                Content="Vezi note" HorizontalAlignment="Left" Margin="258,161,0,0" 
+                    VerticalAlignment="Top" Width="104" Height="31" Click="note_Click"/>
+            <Button Name="material"
+                Content="Vezi material" HorizontalAlignment="Left" Margin="436,161,0,0"
+                    VerticalAlignment="Top" Width="104" Height="31" Click="material_Click"/>
+            <Button Content="Optiuni absente" HorizontalAlignment="Left" 
+                    Margin="637,33,0,0" VerticalAlignment="Top" Width="100" Height="35" Click="Button_Click" />
+            <Button Content="Optiuni note" HorizontalAlignment="Left"
+                    Margin="637,100,0,0" 
+                    VerticalAlignment="Top" Width="100" Height="35" Click="Button_Click_1" />
+            <Button Content="Optiuni materiale" HorizontalAlignment="Left" 
+                    Margin="637,167,0,0" VerticalAlignment="Top" Width="100" Height="35" />
+            <Button Content="Diriginte?" HorizontalAlignment="Left" Margin="637,234,0,0" 
+                VerticalAlignment="Top" Width="100" Height="35" Command="{Binding OpenWindowCommand}"/>
+            <Label  HorizontalAlignment="Left" Margin="631,301,0,0" 
+               VerticalAlignment="Top" Width="152" Height="42"
+               Content="{Binding Message}" Foreground="Red"/>
+        </Grid>
+
+        <Grid>
+            <Grid.DataContext>
+                <local:ProfVM />
+
+            </Grid.DataContext>
+
+            <DataGrid Name="noteGrid"  Margin="27,216,180.6,14" AutoGenerateColumns="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Note}"
+                      Visibility="Hidden">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" />
+                    <DataGridTextColumn Header="Prenume" Binding="{Binding Prenume}" />
+                    <DataGridTextColumn Header="Materie" Binding="{Binding Materie}" />
+                    <DataGridTextColumn Header="Nota" Binding="{Binding Nota}" />
+                    <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                    <DataGridTextColumn Header="Semestru" Binding="{Binding Semestru}" />
+                    <DataGridTextColumn Header="Teza" Binding="{Binding Teza}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid>
+            <Grid.DataContext>
+                <local:ProfVM />
+
+            </Grid.DataContext>
+
+            <DataGrid Name="absenteGrid"  Margin="27,216,177.6,14" AutoGenerateColumns="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Absente}"
+                      Visibility="Hidden">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" />
+                    <DataGridTextColumn Header="Prenume" Binding="{Binding Prenume}" />
+                    <DataGridTextColumn Header="Materie" Binding="{Binding Materie}" />
+                    <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                    <DataGridTextColumn Header="Motivata" Binding="{Binding Motivata}" />
+                    <DataGridTextColumn Header="Motivabila" Binding="{Binding Motivabila}" />
+                    <DataGridTextColumn Header="Semestru" Binding="{Binding Semestru}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+      
+    </Grid>
+</Window>

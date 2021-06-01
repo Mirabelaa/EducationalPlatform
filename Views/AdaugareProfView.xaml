@@ -1,0 +1,102 @@
+﻿<Window x:Class="tema3.Views.AdaugareProfView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tema3.Views"
+        xmlns:local1="clr-namespace:tema3.ViewModels"
+        xmlns:localConverter="clr-namespace:tema3.Converters"
+        mc:Ignorable="d"
+        Title="AdaugareProfView" Height="450" Width="800"
+        WindowStyle="SingleBorderWindow"
+         ResizeMode="CanResize">
+    <Window.DataContext>
+        <local1:AdminVM />
+    </Window.DataContext>
+    <Grid>
+        <Image  Stretch="UniformToFill" 
+                Source="D:\facultate\an2\sem2\mvp\tema3\tema3\resources\b2.jpg"/>
+        <StackPanel>
+            <StackPanel.Resources>
+                <localConverter:ProfConvert x:Key="profConvert" />
+            </StackPanel.Resources>
+            <WrapPanel>
+                <Button Content="Adauga" Margin="15" Width="100" Height="30" Command="{Binding AddProfCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource profConvert}">
+                            <Binding ElementName="nume" Path="Text"/>
+                            <Binding ElementName="prenume" Path="Text"/>
+                            <Binding ElementName="username" Path="Text"/>
+                            <Binding ElementName="parola" Path="Text"/>
+
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Content="Modifica" Margin="15" Width="100" Height="30" Command="{Binding UpdateProfCommand}" 
+                    CommandParameter="{Binding SelectedItem, ElementName=profiGrid}" />
+                <Button Content="Sterge" Margin="15" Width="100" Height="30" Command="{Binding DeleteProfCommand}" 
+                    CommandParameter="{Binding SelectedItem, ElementName=profiGrid}" />
+                <Button Content="Adauga diriginte" Margin="15" Width="120" Height="30" Command="{Binding AddDirigCommand}" 
+                    CommandParameter="{Binding SelectedItem, ElementName=profiGrid}" />
+            </WrapPanel>
+            <Label  HorizontalAlignment="Left" Margin="95,136,0,0" 
+               VerticalAlignment="Top" Width="610" Height="42"
+               Content="{Binding Message}" Foreground="Red"/>
+        </StackPanel>
+
+        <Label Content="Nume" HorizontalAlignment="Left" Margin="25,71,0,0" 
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <Label Content="Prenume" HorizontalAlignment="Left" Margin="25,133,0,0" 
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox Name="nume" Text ="{Binding ElementName=profiGrid, Path=SelectedItem.Nume1, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="128,71,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="prenume" Text ="{Binding ElementName=profiGrid, Path=SelectedItem.Prenume1, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="128,133,0,0" 
+                 TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="300,71,0,0" 
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <Label Content="Parola" HorizontalAlignment="Left" Margin="300,133,0,0"
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox Name="username" Text ="{Binding ElementName=profiGrid, Path=SelectedItem.Username, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="398,71,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="parola" Text ="{Binding ElementName=profiGrid, Path=SelectedItem.Parola, UpdateSourceTrigger=PropertyChanged}"
+            HorizontalAlignment="Left" Height="23" Margin="398,133,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="An" HorizontalAlignment="Left" Margin="570,71,0,0"
+               VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <Label Content="Litera" HorizontalAlignment="Left" Margin="567,133,0,0"
+            VerticalAlignment="Top" Width="70" Background="Aqua"/>
+        <TextBox Name="an" Text ="{Binding ElementName=profiGrid, Path=SelectedItem.An, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left" Margin="665,71,0,0" VerticalAlignment="Top" 
+                Width="59" Height="27"/>
+        <TextBox Name="litera" Text ="{Binding ElementName=profiGrid, Path=SelectedItem.Litera, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left" Margin="665,133,0,0" VerticalAlignment="Top"
+                Width="59" Height="27"/>
+
+
+
+        <Grid>
+            <Grid.DataContext>
+                <local1:AdminVM />
+
+            </Grid.DataContext>
+
+            <DataGrid Name="profiGrid"  Margin="11,225,112.6,5" AutoGenerateColumns="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Profesori}"
+                      Visibility="Visible">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume1}" />
+                    <DataGridTextColumn Header="Prenume" Binding="{Binding Prenume1}" />
+                    <DataGridTextColumn Header="Username" Binding="{Binding Username}" />
+                    <DataGridTextColumn Header="Parola" Binding="{Binding Parola}" />
+                    <DataGridTextColumn Header="An" Binding="{Binding An}" />
+                    <DataGridTextColumn Header="Litera" Binding="{Binding Litera}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</Window>
